@@ -1,0 +1,23 @@
+services:
+  frontend:
+    image: todo-frontend
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - mern
+    container_name: frontend
+  backend:
+    image: todo-backend
+    build: ./backend
+    ports:
+      - "5000:5000"
+    networks:
+      - mern
+    container_name: backend
+    environment:
+      - MONGO_URI=mongodb+srv://avilash21:lU0wyL1ec8ZCeQeH@cluster0.65ry5.mongodb.net/products?retryWrites=true&w=majority&appName=Cluster0
+      - PORT=5000
+networks:
+  mern:
+    driver: bridge  
